@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="زیست شناسی CPR فرهمندنیا | DEMON CLASSES">
+    <title>زیست شناسی فرهمندنیا | DEMON CLASSES</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Tahoma', 'Vazirmatn', 'Poppins', system-ui, sans-serif;
+            background: radial-gradient(circle at 30% 10%, #0a0f1e, #010408);
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+            color: #eafef3;
+            scroll-behavior: smooth;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-radial-gradient(circle at 30% 40%, rgba(0, 255, 200, 0.02) 0px, rgba(0, 20, 15, 0.3) 2px, transparent 4px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 30%, rgba(0, 255, 200, 0.08), transparent 70%);
+            pointer-events: none;
+            animation: softGlow 12s infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes softGlow {
+            0% { opacity: 0.3; transform: translate(0%, 0%);}
+            100% { opacity: 0.7; transform: translate(5%, 3%);}
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* عکس عمودی (با رعایت نسبت) */
+        .course-image {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto 2rem auto;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.7), 0 0 0 1px rgba(0, 255, 200, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .course-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        .course-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 40px -15px #0ff3;
+        }
+
+        /* عنوان دوره */
+        .course-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #a5ffde, #00e0ff, #2effb0);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0,255,200,0.3);
+            margin-bottom: 2rem;
+            padding-right: 0.5rem;
+            border-right: 4px solid #0ff;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        /* باکس‌های اصلی */
+        .box-card {
+            background: rgba(8, 18, 24, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 36px;
+            border: 1px solid rgba(0, 255, 200, 0.45);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6);
+            padding: 1.8rem 1.8rem 2rem 1.8rem;
+            margin-bottom: 2.5rem;
+            transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+        }
+        .box-card:hover {
+            border-color: #3effd0;
+            box-shadow: 0 25px 40px -18px #00ffe070, 0 0 0 2px #3effd030 inset;
+            background: rgba(6, 20, 28, 0.85);
+        }
+
+        .box-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px dashed rgba(0, 255, 200, 0.5);
+        }
+        .box-header span {
+            background: linear-gradient(135deg,#e4fff0,#86f9bc);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* لیست دروس */
+        .lessons-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .lesson-item {
+            background: rgba(0, 0, 0, 0.45);
+            border-radius: 28px;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid rgba(0, 255, 200, 0.25);
+            transition: all 0.2s;
+        }
+        .lesson-item:hover {
+            background: rgba(0, 30, 32, 0.7);
+            border-color: #0ff6;
+            transform: translateX(-5px);
+        }
+        .lesson-link {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 12px;
+            text-decoration: none;
+            color: #e2faef;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+        .lesson-link .lesson-name {
+            font-weight: 700;
+            color: #6effce;
+            min-width: 140px;
+            font-size: 1rem;
+        }
+        .sub-parts {
+            margin-top: 8px;
+            margin-right: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sub-part-link {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            text-decoration: none;
+            color: #caf5e3;
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 24px;
+            transition: 0.2s;
+        }
+        .sub-part-link:hover {
+            background: #0ff2;
+            color: #fff;
+            transform: translateX(-3px);
+        }
+        .m3u8-hint {
+            font-size: 0.7rem;
+            color: #88ffbb;
+            background: #0a2a1f;
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 30px;
+            margin-right: 8px;
+        }
+        .file-item {
+            background: rgba(0, 0, 0, 0.45);
+            border-radius: 28px;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid rgba(0, 255, 200, 0.25);
+            transition: 0.2s;
+            margin-bottom: 1rem;
+        }
+        .file-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #d2fff0;
+            font-weight: 500;
+        }
+        .file-link:hover {
+            color: #0ff;
+            text-shadow: 0 0 4px #0ff;
+        }
+        hr {
+            margin: 2rem 0 1rem;
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #0ff, #ff44ee, transparent);
+        }
+        footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #92c9b0;
+            margin-top: 2rem;
+            padding-top: 1rem;
+        }
+        @media (max-width: 700px) {
+            body { padding: 1rem; }
+            .course-title { font-size: 1.8rem; }
+            .box-card { padding: 1.2rem; }
+            .lesson-link { flex-direction: column; align-items: flex-start; gap: 6px; }
+            .lesson-name { min-width: auto; }
+        }
+        .warning-note {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 28px;
+            padding: 10px 15px;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            border-right: 3px solid #0ff;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- عکس عمودی زیست -->
+    <div class="course-image">
+        <img src="https://biomaze.ir/blog/wp-content/uploads/2021/09/1-2.jpg" alt="زیست شناسی CPR فرهمندنیا" onerror="this.onerror=null; this.src='https://placehold.co/600x800/0a1a1a/0ff?text=BIOLOGY+CPR';">
+    </div>
+
+    <div class="course-title">
+        🧬 زیست شناسی CPR | فرهمندنیا
+    </div>
+
+    <!-- راهنمای m3u8 و VLC -->
+    <div class="warning-note">
+        📺 لینک‌های کلاس‌ها از نوع <strong style="color:#0ff;">m3u8</strong> می‌باشند. برای پخش در کامپیوتر یا گوشی، روی لینک کلیک کنید؛ اگر خودکار در VLC باز نشد، لینک را کپی کرده و در پخش‌کننده VLC باز کنید (فایل → باز کردن آدرس شبکه).
+    </div>
+
+    <!-- باکس کلاس‌های اصلی (جلسات) -->
+    <div class="box-card">
+        <div class="box-header">
+            🎥 <span>جلسات اصلی دوره</span>
+        </div>
+        <div class="lessons-list">
+            <!-- جلسه 0: معرفی -->
+            <div class="lesson-item">
+                <a href="https://s27.uupload.ir/files/amiali/فرهمندنیا0.m3u8" target="_blank" rel="noopener noreferrer" class="lesson-link">
+                    <span class="lesson-name">🔰 جلسه ۰ – معرفی و سرفصل‌ها</span>
+                    <span class="lesson-url">پخش m3u8 ↴</span>
+                </a>
+            </div>
+            <!-- جلسه 1 (سه پارت) -->
+            <div class="lesson-item">
+                <div class="lesson-link" style="cursor: default;">
+                    <span class="lesson-name">📖 جلسه ۱ – فصل 1 و 2 و 3 دهم</span>
+                    <span style="font-size:0.85rem; color:#8affc2;">(سه پارت)</span>
+                </div>
+                <div class="sub-parts">
+                    <a href="https://s33.uupload.ir/files/amiali/amoAli/فرهمندنیا%201پ1.m3u8" target="_blank" rel="noopener noreferrer" class="sub-part-link">
+                        🎞️ پارت ۱ – جلسه ۱
+                    </a>
+                    <a href="https://s25.uupload.ir/files/amiali/amoAli/ج1پ2%20فرهمند.m3u8" target="_blank" rel="noopener noreferrer" class="sub-part-link">
+                        🎞️ پارت ۲ – جلسه ۱
+                    </a>
+                    <a href="https://s33.uupload.ir/files/amiali/amoAli/فرهمندنیا%20ج1پ3.m3u8" target="_blank" rel="noopener noreferrer" class="sub-part-link">
+                        🎞️ پارت ۳ – جلسه ۱
+                    </a>
+                </div>
+            </div>
+            <!-- جلسات بعدی در آینده -->
+            <div class="coming-row" style="padding:0.8rem 1.2rem; color:#bbccbb;">
+                <span class="badge-coming-soon" style="background: rgba(255,100,50,0.2); padding:4px 12px; border-radius:30px;">⏳ جلسات تکمیلی به زودی اضافه می‌شوند</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- باکس مرور سرعتی -->
+    <div class="box-card">
+        <div class="box-header">
+            ⚡ <span>مرور سریع (فصل‌های دهم)</span>
+        </div>
+        <div class="lessons-list">
+            <div class="lesson-item">
+                <a href="https://s25.uupload.ir/files/amiali/دکتر%20فرهمندنیا%20ج1پ1.m3u8" target="_blank" rel="noopener noreferrer" class="lesson-link">
+                    <span class="lesson-name">🧬 مرور سریع فصل ۱ دهم</span>
+                    <span class="lesson-url">پخش m3u8</span>
+                </a>
+            </div>
+            <div class="lesson-item">
+                <a href="https://s25.uupload.ir/files/amiali/فرهمندنیا%20ج1پ2.m3u8" target="_blank" rel="noopener noreferrer" class="lesson-link">
+                    <span class="lesson-name">🧬 مرور سریع فصل ۲ دهم</span>
+                    <span class="lesson-url">پخش m3u8</span>
+                </a>
+            </div>
+            <div class="lesson-item">
+                <a href="https://s25.uupload.ir/files/amiali/فرهمندنیا%20ج1پ3.m3u8" target="_blank" rel="noopener noreferrer" class="lesson-link">
+                    <span class="lesson-name">🧬 مرور سریع فصل ۳ دهم</span>
+                    <span class="lesson-url">پخش m3u8</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- باکس جزوات (دانلود مستقیم zip) -->
+    <div class="box-card">
+        <div class="box-header">
+            📘 <span>جزوات و فایل‌های کمک آموزشی</span>
+        </div>
+        <div class="files-list">
+            <div class="file-item">
+                <a href="https://s25.uupload.ir/files/amiali/جزوات%20خام%20فرهمند%20cpr%20ج1.zip" class="file-link" target="_blank" rel="noopener noreferrer">
+                    📥 دانلود جزوه خام جلسه ۱ 
+                </a>
+            </div>
+            <div class="file-item">
+                <a href="https://s21.uupload.ir/files/amiali/amoAli/فرهمندنیا%20ج1%20اص.zip" class="file-link" target="_blank" rel="noopener noreferrer">
+                    📥 دانلود جزوه پرشده جلسه ۱
+                </a>
+            </div>
+            <div class="update-text" style="margin-top: 0.5rem; color:#b3ffcf; font-size:0.85rem;">
+                ⚡ جزوات جلسات بعدی پس از برگزاری آپدیت می‌شوند.
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <footer>
+        <p>🔥 کلیک روی هر لینک m3u8، فایل استریم را در پنجره جدید باز می‌کند — در صورت نیاز با VLC پخش کنید 🔥</p>
+        <p style="margin-top: 0.6rem; font-size: 0.75rem;">DEMON CLASSES | زیست‌شناسی CPR فرهمندنیا | همه منابع بروز</p>
+        <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <span style="background:#0ff1; padding: 4px 12px; border-radius: 30px; font-size:0.7rem;">🎯 پشتیبانی روبیکا: @Amirqman</span>
+            <span style="background:#f0f1; padding: 4px 12px; border-radius: 30px; font-size:0.7rem;">⚡ تیم DEMON</span>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
